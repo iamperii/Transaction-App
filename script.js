@@ -2,14 +2,9 @@
 
 const button = document.querySelector('.button-container');
 const boxes = document.querySelector('.boxes');
+const box = document.createElement('div');
+box.classList.add('box');
 const module = document.querySelector('.module');
-
-const fromName = document.createElement('p');
-fromName.classList.add('fromName');
-const toName = document.createElement('p');
-toName.classList.add('toName');
-const amount = document.createElement('p');
-amount.classList.add('amount');
 
 let newTransaction = {
 	from: 'Peri',
@@ -32,9 +27,25 @@ async function apiData() {
 	}
 	let data = await response.json();
 	data.forEach((element) => {
-		fromName.textContent = element.from;
-		toName.textContent = element.to;
-		amount.textContent = element.amount;
+		const box = document.createElement('div');
+		box.classList.add('box');
+
+		const fromName = document.createElement('p');
+		fromName.classList.add('fromName');
+		fromName.textContent = `From: ${element.from}`;
+
+		const toName = document.createElement('p');
+		toName.classList.add('toName');
+		toName.textContent = `To: ${element.to}`;
+
+		const amount = document.createElement('p');
+		amount.classList.add('amount');
+		amount.textContent = `Amount: ${element.amount}`;
+
+		box.appendChild(fromName);
+		box.appendChild(toName);
+		box.appendChild(amount);
+		boxes.appendChild(box);
 	});
 }
 async function deleteTransaction() {}
