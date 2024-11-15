@@ -124,7 +124,6 @@ svg:hover .tooltip {
 .module {
 	position: absolute;
 	color: blue;
-	/* top: 500px; */
 	left: 10px;
 	bottom: 0;
 }
