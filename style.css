@@ -32,6 +32,8 @@ body {
 	height: 200px;
 	border: 1px solid lightblue;
 }
+
+/* ADD BUTTON */
 .uiverse {
 	position: relative;
 	background: #ffffff;
@@ -96,7 +98,7 @@ svg:hover .tooltip {
 	color: #ffffff;
 }
 
-
+/* scrollbar */
 .boxes {
 	border: 1px solid black;
 	width: 500px;
