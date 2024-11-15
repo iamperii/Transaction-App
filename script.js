@@ -41,10 +41,9 @@ async function apiData() {
 		const amount = document.createElement('p');
 		amount.classList.add('amount');
 		amount.textContent = `Amount: ${element.amount}`;
+
+		//! trash
 		const trash = document.createElement('section');
-		const editPen = document.createElement('div');
-		editPen.classList.add('section2');
-		
 		trash.innerHTML = `
 			<span class="trash">
 				<span></span>
@@ -52,6 +51,9 @@ async function apiData() {
 			</span>
 			`;
 
+		//! edit
+		const editPen = document.createElement('div');
+		editPen.classList.add('section2');
 		editPen.innerHTML = `
 		<div class="edit-container">
     <svg class="edit-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -70,11 +72,14 @@ async function apiData() {
     </svg>
   </div>
 		`;
+
 		box.appendChild(fromName);
 		box.appendChild(toName);
 		box.appendChild(amount);
+
 		box.appendChild(editPen);
 		box.appendChild(trash);
+
 		boxes.appendChild(box);
 	});
 }
