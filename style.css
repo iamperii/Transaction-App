@@ -14,30 +14,12 @@ body {
 	justify-content: center;
 }
 .boxes {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr;
-	gap: 40px;
 	padding: 20px;
 	width: 600px;
-	height: 400px;
+	height: 500px;
 	border-radius: 10px;
 	border: 1px solid black;
-	width: 500px;
-	height: 500px;
 	overflow-y: scroll;
-}
-.box {
-	display: flex;
-	align-items: center;
-	justify-content: space-evenly;
-	flex-direction: column;
-	width: 150px;
-	height: 150px;
-	border: 1px solid lightblue;
-	&:hover {
-		cursor: pointer;
-	}
 }
 
 /** ADD BUTTON  start*/
@@ -112,6 +94,7 @@ svg:hover .tooltip {
 
 /** ADD BUTTON  end*/
 
+/* scroll */
 .boxes::-webkit-scrollbar {
 	height: 8px;
 	width: 10px;
@@ -228,7 +211,6 @@ section {
 
 /* edit-pen */
 .edit-container {
-	display: flex;
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
@@ -238,7 +220,7 @@ section {
 
 .edit-icon {
 	width: 40px;
-	height: 40px;
+	height: 30px;
 	transition: all 0.3s ease;
 }
 
@@ -277,4 +259,56 @@ section {
 }
 .section2 {
 	align-self: flex-start;
+}
+
+.transaction-box {
+	background: lightgrey;
+	height: 200px;
+	padding: 1.5rem;
+	margin: 10px 0px;
+	font-size: 25px;
+	border-radius: 12px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	width: 100%;
+	display: grid;
+	grid-template-columns: auto 40px auto;
+	gap: 1rem;
+	align-items: center;
+	transition: all 0.3s ease;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	&:hover {
+		cursor: pointer;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px 16px rgba(0, 0, 0, 0.1);
+	}
+}
+
+.address-container {
+	text-align: center;
+}
+
+.label {
+	font-size: 20px;
+	font-weight: bolder;
+	color: #999;
+	margin-bottom: 0.3rem;
+}
+
+.address {
+	color: #666;
+	font-weight: 500;
+	font-size: 18px;
+}
+
+.arrow-icon {
+	color: #4caf50;
+}
+
+.amount {
+	grid-column: 1 / -1;
+	text-align: center;
+	margin-top: 0.5rem;
+	font-weight: 600;
+	color: #4caf50;
+	font-size: 1.1rem;
 }
