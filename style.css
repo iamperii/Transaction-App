@@ -7,6 +7,8 @@
 body {
 	font-family: 'Poppins';
 	position: relative;
+	width: 100vw;
+	height: 100vh;
 }
 .boxes {
 	position: absolute;
@@ -118,4 +120,11 @@ svg:hover .tooltip {
 	background: rgb(0, 0, 0, 0.15);
 	cursor: grabbing;
 	border-radius: 99px;
+}
+.module {
+	position: absolute;
+	color: blue;
+	/* top: 500px; */
+	left: 10px;
+	bottom: 0;
 }
