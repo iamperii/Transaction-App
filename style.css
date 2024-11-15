@@ -119,11 +119,11 @@ svg:hover .tooltip {
 
 /* trash */
 section {
-	width: 25%;
-	height: 25%;
+	width: 40px;
+	height: 30px;
 	display: flex;
 	align-items: center;
-	align-self: end;
+	/* align-self: end; */
 	margin-right: 10px;
 }
 
@@ -210,12 +210,13 @@ section {
 }
 
 /* edit-pen */
+.section2{
+	width: 40px;
+}
 .edit-container {
-	justify-content: center;
-	align-items: center;
 	cursor: pointer;
 	position: relative;
-	align-self: flex-start;
+	
 }
 
 .edit-icon {
@@ -257,15 +258,12 @@ section {
 	color: #4caf50;
 	transform: translateY(0);
 }
-.section2 {
-	align-self: flex-start;
-}
 
 .transaction-box {
 	background: lightgrey;
 	height: 200px;
 	padding: 1.5rem;
-	margin: 10px 0px;
+	margin-bottom: 20px;
 	font-size: 25px;
 	border-radius: 12px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -275,7 +273,6 @@ section {
 	gap: 1rem;
 	align-items: center;
 	transition: all 0.3s ease;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 	&:hover {
 		cursor: pointer;
 		transform: translateY(-2px);
@@ -288,7 +285,7 @@ section {
 }
 
 .label {
-	font-size: 20px;
+	font-size: 10px;
 	font-weight: bolder;
 	color: #999;
 	margin-bottom: 0.3rem;
@@ -311,4 +308,68 @@ section {
 	font-weight: 600;
 	color: #4caf50;
 	font-size: 1.1rem;
+}
+
+.animated-background {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		45deg,
+		#ff9a9e,
+		#fad0c4,
+		#fbc2eb,
+		#a1c4fd,
+		#c2e9fb
+	);
+	background-size: 400% 400%;
+	animation: gradientAnimation 10s ease infinite;
+	z-index: -1;
+}
+
+@keyframes gradientAnimation {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.animated-background::before,
+.animated-background::after {
+	content: '';
+	position: absolute;
+	width: 200%;
+	height: 200%;
+	background: radial-gradient(
+		circle,
+		rgba(255, 255, 255, 0.1) 1%,
+		transparent 20%
+	);
+	animation: particleMove 15s linear infinite;
+	mix-blend-mode: screen;
+}
+
+.animated-background::before {
+	top: -100%;
+	left: -100%;
+}
+
+.animated-background::after {
+	top: 100%;
+	left: 100%;
+	animation-delay: 7.5s;
+}
+
+@keyframes particleMove {
+	0% {
+		transform: translate(0, 0);
+	}
+	100% {
+		transform: translate(100%, 100%);
+	}
 }
