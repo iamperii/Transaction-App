@@ -3,7 +3,7 @@
 const button = document.querySelector('.button-container');
 const boxes = document.querySelector('.boxes');
 const box = document.createElement('div');
-box.classList.add('box');
+box.classList.add('transaction-box');
 const module = document.querySelector('.module');
 
 let newTransaction = {
@@ -28,20 +28,27 @@ async function apiData() {
 	let data = await response.json();
 	data.forEach((element) => {
 		const box = document.createElement('div');
-		box.classList.add('box');
+		box.classList.add('transaction-box');
 
-		const fromName = document.createElement('p');
-		fromName.classList.add('fromName');
-		fromName.textContent = `From: ${element.from}`;
-
-		const toName = document.createElement('p');
-		toName.classList.add('toName');
-		toName.textContent = `To: ${element.to}`;
-
-		const amount = document.createElement('p');
-		amount.classList.add('amount');
-		amount.textContent = `Amount: ${element.amount}`;
-
+		box.innerHTML = `
+			<div class="address-container">
+				<div class="label">From</div>
+				<div class="address">${element.from}</div>
+			</div>
+			<svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<path d="M12 5l7 7-7 7M5 12h14"></path>
+			</svg>
+			<div class="address-container">
+				<div class="label">To</div>
+				<div class="address">${element.to}</div>
+			</div>
+			<div class="amount" style="grid-column: 1 / -1; text-align: center; margin-top: 0.5rem;">
+				${element.amount}$
+			</div>
+		`;
+		if (element.from !== '' && element.to !== '') {
+			boxes.appendChild(box);
+		}
 		//! trash
 		const trash = document.createElement('section');
 		trash.innerHTML = `
@@ -73,14 +80,14 @@ async function apiData() {
   </div>
 		`;
 
-		box.appendChild(fromName);
-		box.appendChild(toName);
-		box.appendChild(amount);
+		// box.appendChild(fromName);
+		// box.appendChild(toName);
+		// box.appendChild(amount);
 
 		box.appendChild(editPen);
 		box.appendChild(trash);
 
-		boxes.appendChild(box);
+		// boxes.appendChild(box);
 	});
 }
 async function deleteTransaction() {
