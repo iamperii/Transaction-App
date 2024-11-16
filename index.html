@@ -15,7 +15,20 @@
 				<span class="add-button">Add</span>
 			</div>
 			<div class="module-none">
-				<div>hec ozumde bilmirem necedi bujasjdjaskldjaskldjaskl</div>
+				<form class="form">
+					<label class="lb" for="nome">From:</label>
+					<input name="nome" id="nome" type="text" class="infos" required />
+
+					<label for="email" class="lb">To:</label>
+					<input name="email" id="lb" type="text" class="infos" required />
+
+					<label for="data" class="lb">Amount:</label>
+					<input name="data" id="data" type="number" class="infos" required />
+
+					<button class="send" type="submit">Submit</button>
+					<button class="limpar" type="reset">Cancel</button>
+				</form>
+				`
 			</div>
 		</div>
 		<script src="./script.js"></script>
