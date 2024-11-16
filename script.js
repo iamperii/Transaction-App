@@ -1,11 +1,7 @@
-// fetch('https://acb-api.algoritmika.org/api/transaction');
-
 const button = document.querySelector('.button-container');
 const boxes = document.querySelector('.boxes');
-const box = document.createElement('div');
-box.classList.add('transaction-box');
-const module = document.querySelector('.module');
 
+// for testing
 let newTransaction = {
 	from: 'Periiii',
 	to: 'Minure',
@@ -19,7 +15,6 @@ async function apiData() {
 			headers: {
 				'Content-type': 'application/json',
 			},
-			// body: JSON.stringify(newTransaction),
 		}
 	);
 	if (!response.ok) {
@@ -28,9 +23,11 @@ async function apiData() {
 	let data = await response.json();
 	data.forEach((element) => {
 		const box = document.createElement('div');
-		box.classList.add('transaction-box');
+		const transactionBox = document.createElement('div');
 
-		box.innerHTML = `
+		transactionBox.classList.add('transaction-box');
+		box.classList.add('box');
+		transactionBox.innerHTML = `
 			<div class="address-container">
 				<div class="label">From</div>
 				<div class="address">${element.from}</div>
@@ -46,16 +43,34 @@ async function apiData() {
 				${element.amount}$
 			</div>
 		`;
-		if (element.from !== '' && element.to !== '') {
-			boxes.appendChild(box);
-		}
+
 		//! trash
+		const iconContainer = document.createElement('div');
+		iconContainer.classList.add('iconContainer');
 		const trash = document.createElement('section');
 		trash.innerHTML = `
-			<span class="trash">
-				<span></span>
-				<i></i>
-			</span>
+		 <div class="trash-container">
+    <svg class="trash-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path 
+        class="trash-lid"
+        d="M5 5h14M15 5V4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v1"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <path 
+        class="trash-body"
+        d="M6 5h12v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5z"
+        stroke-width="1.5"
+        stroke-linejoin="round"
+      />
+      <path 
+        class="trash-body"
+        d="M10 9v8M14 9v8"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+    </svg>
+  </div>
 			`;
 
 		//! edit
@@ -80,14 +95,14 @@ async function apiData() {
   </div>
 		`;
 
-		// box.appendChild(fromName);
-		// box.appendChild(toName);
-		// box.appendChild(amount);
-
-		box.appendChild(editPen);
-		box.appendChild(trash);
-
-		// boxes.appendChild(box);
+		if (element.from !== '' && element.to !== '') {
+			iconContainer.appendChild(editPen);
+			iconContainer.appendChild(trash);
+			box.appendChild(iconContainer);
+			box.appendChild(transactionBox);
+			box.appendChild(iconContainer);
+			boxes.appendChild(box);
+		}
 	});
 }
 async function deleteTransaction() {
@@ -98,7 +113,6 @@ async function deleteTransaction() {
 			headers: {
 				'Content-type': 'application/json',
 			},
-			body: JSON.stringify(newTransaction),
 		}
 	);
 	if (!response.ok) {
@@ -126,6 +140,27 @@ async function addnewTransaction() {
 	console.log(data);
 }
 
-button.addEventListener('click', addnewTransaction);
+// button.addEventListener('click', addnewTransaction);
+
+const module = document.querySelector('.module-none');
+function showModule() {
+	// event.preventDefault();
+	module.classList.add('module-block');
+	module.innerHTML = `
+	<form class="form">
+<label class="lb" for="nome">From:</label>
+      <input name="nome" id="nome" type="text" class="infos"  required>
+
+      <label for="email" class="lb">To:</label>
+      <input name="email" id="lb" type="text" class="infos" required>
+
+      <label for="data" class="lb">Amount:</label>
+      <input name="data" id="data" type="number" class="infos" required>
+
+      <button class="send" type="submit">Submit</button>
+      <button class="limpar" type="reset">Cancel </button>
+    </form>`;
+}
+button.addEventListener('click', showModule);
 
 document.addEventListener('DOMContentLoaded', apiData);
