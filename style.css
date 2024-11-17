@@ -18,9 +18,11 @@ body {
 	padding: 20px;
 	width: 600px;
 	height: 500px;
-	border-radius: 10px;
+	border-radius: 20px;
 	border: 1px solid black;
 	overflow-y: scroll;
+	background: #e0e0e0;
+	box-shadow: -20px -20px 60px #bebebe, 20px 20px 60px #ffffff;
 }
 
 /** ADD BUTTON  start*/
@@ -115,6 +117,7 @@ svg:hover .tooltip {
 /* trash */
 
 .trash-container {
+	margin-bottom: 10px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -163,6 +166,7 @@ svg:hover .tooltip {
 /* edit-pen */
 .section2 {
 	width: 40px;
+	margin-bottom: 10px;
 }
 .edit-container {
 	cursor: pointer;
@@ -214,6 +218,7 @@ svg:hover .tooltip {
 	border-radius: 12px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 	transition: all 0.3s ease;
+	margin-bottom: 20px;
 	&:hover {
 		cursor: pointer;
 		transform: translateY(-2px);
@@ -221,10 +226,9 @@ svg:hover .tooltip {
 	}
 }
 .transaction-box {
-	height: 100px;
+	height: 60px;
 	padding: 1.5rem;
 	margin-bottom: 20px;
-
 	width: 100%;
 	display: grid;
 	grid-template-columns: auto 40px auto;
@@ -327,16 +331,16 @@ svg:hover .tooltip {
 	}
 }
 
-/* module */
-.module-none {
+/* modal */
+.modal-none {
 	display: none;
 	position: absolute;
-	color: blue;
+	color: white;
 	left: 10px;
 	bottom: 0;
 }
 
-.module-block {
+.modal-block {
 	display: block;
 	color: red;
 }
@@ -469,7 +473,7 @@ input[type='number'] {
 		0 0 2.5em 2em var(--glow-spread-color),
 		inset 0 0 0.5em 0.25em var(--glow-color);
 }
-.iconContainer{
+.iconContainer {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
