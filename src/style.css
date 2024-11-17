@@ -15,13 +15,13 @@ body {
 	overflow: hidden;
 }
 .boxes {
-	padding: 10px;
-	width: 600px;
-	height: 500px;
+	padding: 20px;
+	width: 700px;
+	height: 600px;
 	border-radius: 20px;
-	border: 1px solid black;
-	overflow-y: scroll;
-	background: #e0e0e0;
+	box-sizing: border-box;
+	overflow: auto;
+	background: #f9b8b8;
 	box-shadow: -20px -20px 60px #bebebe, 20px 20px 60px #ffffff;
 }
 
@@ -79,8 +79,8 @@ body {
 }
 .button-container {
 	position: absolute;
-	right: 260px;
-	top: 100px;
+	right: 390px;
+	top: 130px;
 }
 
 svg:hover span,
@@ -97,10 +97,10 @@ svg:hover .tooltip {
 
 /** ADD BUTTON  end*/
 
-/* scroll */
+/** SCROLL */
 .boxes::-webkit-scrollbar {
-	height: 8px;
 	width: 10px;
+	padding: 10px;
 	cursor: grabbing;
 }
 .boxes::-webkit-scrollbar-track {
@@ -347,10 +347,10 @@ svg:hover .tooltip {
 
 /* form */
 form {
-	background-color: #444444;
+	background-color: #858484;
 	border-radius: 10px;
 	padding: 20px;
-	width: 300px;
+	width: 400px;
 	margin: 50px auto;
 }
 
