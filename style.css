@@ -424,7 +424,7 @@ input[type='number'] {
 		inset 0 0 0.5em 0.25em var(--glow-color);
 }
 
-.limpar {
+.close {
 	--glow-color: rgb(255, 176, 176);
 	--glow-spread-color: rgba(255, 123, 123, 0.781);
 	--enhanced-glow-color: rgb(182, 175, 71);
@@ -445,7 +445,7 @@ input[type='number'] {
 	transition: all 0.3s;
 }
 
-.limpar::after {
+.close::after {
 	pointer-events: none;
 	content: '';
 	position: absolute;
@@ -459,7 +459,7 @@ input[type='number'] {
 	transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
 }
 
-.limpar:hover {
+.close:hover {
 	color: var(--btn-color);
 	background-color: var(--glow-color);
 	box-shadow: 0 0 1em 0.25em var(--glow-color),
@@ -468,7 +468,7 @@ input[type='number'] {
 	cursor: pointer;
 }
 
-.limpar:active {
+.close:active {
 	box-shadow: 0 0 0.6em 0.25em var(--glow-color),
 		0 0 2.5em 2em var(--glow-spread-color),
 		inset 0 0 0.5em 0.25em var(--glow-color);

@@ -7,6 +7,8 @@ let newTransaction = {
 	to: 'Minure',
 	amount: 200,
 };
+
+//! PARENT FUNCTION.
 async function apiData() {
 	let response = await fetch(
 		'https://acb-api.algoritmika.org/api/transaction',
@@ -23,10 +25,12 @@ async function apiData() {
 	let data = await response.json();
 	data.forEach((element) => {
 		const box = document.createElement('div');
-		const transactionBox = document.createElement('div');
+		box.id = `transaction-${element.id}`;
 
+		const transactionBox = document.createElement('div');
 		transactionBox.classList.add('transaction-box');
 		box.classList.add('box');
+
 		transactionBox.innerHTML = `
 			<div class="address-container">
 				<div class="label">From</div>
@@ -44,10 +48,11 @@ async function apiData() {
 			</div>
 		`;
 
-		//! trash
+		//! DELETE
 		const iconContainer = document.createElement('div');
 		iconContainer.classList.add('iconContainer');
 		const trash = document.createElement('section');
+
 		trash.innerHTML = `
 		 <div class="trash-container">
     <svg class="trash-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,6 +78,30 @@ async function apiData() {
   </div>
 			`;
 
+		async function deleteTransaction(element) {
+			const transactionID = await element.id;
+
+			const deleteTransaction = await fetch(
+				`https://acb-api.algoritmika.org/api/transaction/${transactionID}`,
+				{
+					method: 'DELETE',
+					headers: {
+						'Content-type': 'application/json',
+					},
+				}
+			);
+			const deleteResponse = await deleteTransaction.json();
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			}
+			const boxToRemove = document.querySelector(
+				`#transaction-${transactionID}`
+			);
+			boxToRemove.remove();
+		}
+
+		trash.addEventListener('click', () => deleteTransaction(element));
+
 		//! edit
 		const editPen = document.createElement('div');
 		editPen.classList.add('section2');
@@ -95,7 +124,13 @@ async function apiData() {
   </div>
 		`;
 
-		if (element.from !== '' && element.to !== '') {
+		async function editTrsansaction(element) {
+			console.log(1);
+		}
+
+		editPen.addEventListener('click', () => editTrsansaction(element));
+
+		if (element.from !== '' && element.to !== '' && element.amount > 0) {
 			iconContainer.appendChild(editPen);
 			iconContainer.appendChild(trash);
 			box.appendChild(iconContainer);
@@ -104,63 +139,21 @@ async function apiData() {
 			boxes.appendChild(box);
 		}
 	});
-}
-async function deleteTransaction() {
-	let response = await fetch(
-		'https://acb-api.algoritmika.org/api/transaction',
-		{
-			method: 'DELETE',
-			headers: {
-				'Content-type': 'application/json',
-			},
-		}
-	);
-	if (!response.ok) {
-		throw new Error(`HTTP error! Status: ${response.status}`);
+
+	// ADD
+	async function addnewTransaction() {}
+
+	// MODAL
+	const modal = document.querySelector('.modal-none');
+	const closeButton = document.querySelector('.close');
+	function showModal() {
+		modal.style.display = 'block';
 	}
-	let data = await response.json();
-	console.log(data);
-}
-async function editTrsansaction() {}
-async function addnewTransaction() {
-	let response = await fetch(
-		'https://acb-api.algoritmika.org/api/transaction',
-		{
-			method: 'POST',
-			headers: {
-				'Content-type': 'application/json',
-			},
-			body: JSON.stringify(newTransaction),
-		}
-	);
-	if (!response.ok) {
-		throw new Error(`HTTP error! Status: ${response.status}`);
+	function closeModal() {
+		modal.style.display = 'none';
 	}
-	let data = await response.json();
-	console.log(data);
+	closeButton.addEventListener('click', closeModal);
+	button.addEventListener('click', showModal);
 }
-
-// button.addEventListener('click', addnewTransaction);
-
-const module = document.querySelector('.module-none');
-function showModule() {
-	// event.preventDefault();
-	module.classList.add('module-block');
-	module.innerHTML = `
-	<form class="form">
-<label class="lb" for="nome">From:</label>
-      <input name="nome" id="nome" type="text" class="infos"  required>
-
-      <label for="email" class="lb">To:</label>
-      <input name="email" id="lb" type="text" class="infos" required>
-
-      <label for="data" class="lb">Amount:</label>
-      <input name="data" id="data" type="number" class="infos" required>
-
-      <button class="send" type="submit">Submit</button>
-      <button class="limpar" type="reset">Cancel </button>
-    </form>`;
-}
-button.addEventListener('click', showModule);
 
 document.addEventListener('DOMContentLoaded', apiData);
