@@ -90,6 +90,7 @@ async function apiData() {
 					},
 				}
 			);
+
 			const deleteResponse = await deleteTransaction.json();
 			if (!response.ok) {
 				throw new Error(`HTTP error! Status: ${response.status}`);
@@ -99,10 +100,9 @@ async function apiData() {
 			);
 			boxToRemove.remove();
 		}
-
 		trash.addEventListener('click', () => deleteTransaction(element));
 
-		//! edit
+		//! EDIT
 		const editPen = document.createElement('div');
 		editPen.classList.add('section2');
 		editPen.innerHTML = `
@@ -141,9 +141,15 @@ async function apiData() {
 	});
 
 	// ADD
-	async function addnewTransaction() {}
-
-	// MODAL
+	async function addnewTransaction() {
+		console.log(1);
+	}
+	const sendButton = document.querySelector('.send');
+	sendButton.addEventListener('click', (e) => {
+		// e.preventDefault();
+		addnewTransaction;
+	});
+	//! MODAL
 	const modal = document.querySelector('.modal-none');
 	const closeButton = document.querySelector('.close');
 	function showModal() {
