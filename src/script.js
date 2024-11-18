@@ -269,7 +269,6 @@ async function apiData() {
 		setTransactionMode('add');
 	});
 
-	const sendButton = document.querySelector('.send');
 	setTransactionMode('add');
 
 	function openPopUp(transactionID) {
